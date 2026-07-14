@@ -8,7 +8,9 @@ interface CreateCompanyDTO {
 export async function createCompany(
   data: CreateCompanyDTO
 ) {
-  return Company.create(data);
+  const company = await Company.create(data);
+
+  return company;
 }
 
 export async function getCompanies() {
