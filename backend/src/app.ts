@@ -2,6 +2,10 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import companyRoutes from "./modules/company/company.routes.js";
+import { errorMiddleware } from "./middleware/error.middleware.js";
+import authRoutes from "./modules/auth/auth.routes.js";
+import passport from "./config/passport.js";
+
 
 const app = express();
 
@@ -19,6 +23,14 @@ app.use(
   "/api/companies",
   companyRoutes
 );
+
+app.use(
+  "/api/auth",
+  authRoutes
+);
+
+app.use(passport.initialize());
+app.use(errorMiddleware);
 
 app.get("/", (_, res) => {
   res.json({
