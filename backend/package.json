@@ -47,6 +47,8 @@
     "passport@0.7.0": true,
     "passport-google-oauth20@2.0.0": true,
     "@types/passport@1.0.17": true,
-    "@types/passport-google-oauth20@2.0.17": true
+    "@types/passport-google-oauth20@2.0.17": true,
+    "@types/jsonwebtoken@9.0.10": true,
+    "jsonwebtoken@9.0.3": true
   }
 }

@@ -4,6 +4,8 @@ import passport from "../../config/passport.js";
 
 import { meController } from "./auth.controller.js";
 
+import { generateToken } from "../../shared/utils/generateToken.js";
+
 const router = Router();
 
 router.get("/me", meController);
@@ -21,8 +23,21 @@ router.get(
     session: false,
     failureRedirect: "/",
   }),
-  (_req, res) => {
-    res.send("Google Login Successful!");
+  (req, res) => {
+    const token = generateToken(
+      (req.user as any)._id.toString()
+    );
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    res.redirect(
+      "http://localhost:3000/onboarding"
+    );
   }
 );
 
