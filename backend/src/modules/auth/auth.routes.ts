@@ -2,7 +2,8 @@ import { Router } from "express";
 
 import passport from "../../config/passport.js";
 
-import { meController } from "./auth.controller.js";
+import { meController, onboardingController } from "./auth.controller.js";
+import { protect } from "./auth.middleware.js";
 
 import { generateToken } from "../../shared/utils/generateToken.js";
 
@@ -39,6 +40,11 @@ router.get(
       "http://localhost:3000/onboarding"
     );
   }
+);
+router.post(
+  "/onboarding",
+  protect,
+  onboardingController
 );
 
 export default router;
