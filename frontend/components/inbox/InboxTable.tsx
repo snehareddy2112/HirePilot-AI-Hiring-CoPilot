@@ -17,27 +17,15 @@ export default function InboxTable({
         <thead className="border-b border-slate-800 bg-slate-950">
           <tr>
             <th className="px-6 py-4 text-left text-sm text-slate-400">
-              Candidate
+              Subject
             </th>
 
             <th className="text-left text-sm text-slate-400">
-              Role
+              From
             </th>
 
             <th className="text-left text-sm text-slate-400">
-              Source
-            </th>
-
-            <th className="text-left text-sm text-slate-400">
-              Match
-            </th>
-
-            <th className="text-left text-sm text-slate-400">
-              Status
-            </th>
-
-            <th className="text-left text-sm text-slate-400">
-              Applied
+              Preview
             </th>
           </tr>
         </thead>
@@ -45,42 +33,22 @@ export default function InboxTable({
         <tbody>
           {candidates.map((candidate) => (
             <tr
-              key={candidate.id}
+              key={candidate._id}
               onClick={() => onSelect(candidate)}
               className="cursor-pointer border-b border-slate-800 transition hover:bg-slate-800/50"
             >
               <td className="px-6 py-5">
-                <div>
-                  <h3 className="font-semibold text-white">
-                    {candidate.name}
-                  </h3>
-
-                  <p className="text-sm text-slate-400">
-                    {candidate.email}
-                  </p>
-                </div>
+                <h3 className="font-semibold text-white">
+                  {candidate.subject}
+                </h3>
               </td>
 
               <td className="text-slate-300">
-                {candidate.role}
+                {candidate.from}
               </td>
 
-              <td className="text-slate-300">
-                {candidate.source}
-              </td>
-
-              <td>
-                <span className="rounded-full bg-blue-600 px-3 py-1 text-sm text-white">
-                  {candidate.match}%
-                </span>
-              </td>
-
-              <td className="text-slate-300">
-                {candidate.status}
-              </td>
-
-              <td className="text-slate-400">
-                {candidate.appliedDate}
+              <td className="max-w-md truncate text-slate-400">
+                {candidate.body}
               </td>
             </tr>
           ))}

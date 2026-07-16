@@ -3,7 +3,7 @@ import { Router } from "express";
 import passport from "../../config/passport.js";
 
 import { meController, onboardingController } from "./auth.controller.js";
-import { protect } from "./auth.middleware.js";
+import { protect } from "../../middleware/auth.middleware.js";
 
 import { generateToken } from "../../shared/utils/generateToken.js";
 

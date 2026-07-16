@@ -5,6 +5,8 @@ import companyRoutes from "./modules/company/company.routes.js";
 import { errorMiddleware } from "./middleware/error.middleware.js";
 import authRoutes from "./modules/auth/auth.routes.js";
 import passport from "./config/passport.js";
+import mailboxRoutes from "./modules/mailbox/mailbox.routes.js";
+import emailRoutes from "./modules/email/email.routes.js";
 
 
 const app = express();
@@ -28,7 +30,9 @@ app.use(
   "/api/auth",
   authRoutes
 );
+app.use("/api/mailbox", mailboxRoutes);
 
+app.use("/api/emails", emailRoutes);
 app.use(passport.initialize());
 app.use(errorMiddleware);
 
