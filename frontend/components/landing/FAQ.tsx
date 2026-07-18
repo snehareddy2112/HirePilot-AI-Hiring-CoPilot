@@ -63,8 +63,7 @@ export default function FAQ() {
         </motion.div>
 
         <Accordion
-          type="single"
-          collapsible
+        
           className="space-y-4"
         >
           {faqs.map((faq, index) => (

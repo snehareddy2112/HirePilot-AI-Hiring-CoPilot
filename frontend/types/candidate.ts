@@ -10,6 +10,7 @@ export interface Candidate {
   aiSummary: ReactNode;
   body: ReactNode;
   id: string;
+  _id?: string;
   name: string;
   email: string;
   role: string;
