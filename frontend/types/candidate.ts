@@ -1,4 +1,14 @@
+import type { ReactNode } from 'react';
+
 export interface Candidate {
+  score: ReactNode;
+  skills: string[];
+  missingSkills: string[];
+  recommendation: ReactNode;
+  subject: ReactNode;
+  from: ReactNode;
+  aiSummary: ReactNode;
+  body: ReactNode;
   id: string;
   name: string;
   email: string;

@@ -8,8 +8,7 @@ import InboxFilters from "@/components/inbox/InboxFilters";
 import InboxTable from "@/components/inbox/InboxTable";
 import CandidateDrawer from "@/components/inbox/CandidateDrawer";
 import Pagination from "@/components/common/Pagination";
-
-type Candidate = Record<string, unknown>;
+import type { Candidate } from "@/types/candidate";
 
 export default function InboxPage() {
   const [page, setPage] = useState(1);
@@ -26,7 +25,8 @@ export default function InboxPage() {
     try {
       const response =
         await axios.get(
-          "http://localhost:5000/api/emails",
+          //"http://localhost:5000/api/emails",
+           `${process.env.NEXT_PUBLIC_API_URL}/api/emails`,
           {
             withCredentials: true,
           }
@@ -46,7 +46,8 @@ export default function InboxPage() {
   async function syncEmails() {
     try {
       await axios.get(
-        "http://localhost:5000/api/emails/sync",
+        //"http://localhost:5000/api/emails/sync",
+         `${process.env.NEXT_PUBLIC_API_URL}/api/emails/sync`,
         {
           withCredentials: true,
         }
@@ -67,7 +68,8 @@ export default function InboxPage() {
     const loadEmails = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/emails",
+          //"http://localhost:5000/api/emails",
+           `${process.env.NEXT_PUBLIC_API_URL}/api/emails`,
           {
             withCredentials: true,
           }

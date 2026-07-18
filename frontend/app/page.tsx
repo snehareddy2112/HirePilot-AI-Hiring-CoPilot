@@ -22,6 +22,7 @@ export default function Home() {
       <RecruiterBrief />
       <Security />
       <FAQ />
+      
     </main>
   );
 }

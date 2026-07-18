@@ -12,7 +12,7 @@ export default function DashboardPage() {
           </h1>
 
           <p className="mt-2 text-slate-400">
-            Welcome back! Here's today's hiring overview.
+            Welcome back! Here&apos;s today&apos;s hiring overview.
           </p>
         </div>
 

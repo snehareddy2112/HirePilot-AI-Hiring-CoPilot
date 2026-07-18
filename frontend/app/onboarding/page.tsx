@@ -20,7 +20,8 @@ export default function OnboardingPage() {
     e.preventDefault();
 
     await axios.post(
-      "http://localhost:5000/api/auth/onboarding",
+      //"http://localhost:5000/api/auth/onboarding",
+       `${process.env.NEXT_PUBLIC_API_URL}/api/auth/onboarding`,
       {
         companyName,
         mailbox,
