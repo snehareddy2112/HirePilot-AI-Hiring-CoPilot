@@ -7,13 +7,15 @@ import authRoutes from "./modules/auth/auth.routes.js";
 import passport from "./config/passport.js";
 import mailboxRoutes from "./modules/mailbox/mailbox.routes.js";
 import emailRoutes from "./modules/email/email.routes.js";
-
+import jobRoutes from "./modules/jobs/job.routes.js";
 
 const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin:
+      process.env.FRONTEND_URL,
+     
     credentials: true,
   })
 );
@@ -31,7 +33,10 @@ app.use(
   authRoutes
 );
 app.use("/api/mailbox", mailboxRoutes);
-
+app.use(
+    "/api/jobs",
+    jobRoutes
+);
 app.use("/api/emails", emailRoutes);
 app.use(passport.initialize());
 app.use(errorMiddleware);

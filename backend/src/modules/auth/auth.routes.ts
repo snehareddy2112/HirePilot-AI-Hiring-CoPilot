@@ -29,16 +29,39 @@ router.get(
       (req.user as any)._id.toString()
     );
 
-    res.cookie("token", token, {
+    /*res.cookie("token", token, {
       httpOnly: true,
       secure: false,
       sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    });*/
+    res.cookie(
+  "token",
+  token,
+  {
+    httpOnly: true,
 
-    res.redirect(
+    secure:
+      process.env.NODE_ENV ===
+      "production",
+
+    sameSite:
+      process.env.NODE_ENV ===
+      "production"
+        ? "none"
+        : "lax",
+
+    maxAge:
+      7 * 24 * 60 * 60 * 1000,
+  }
+);
+
+    /*res.redirect(
       "http://localhost:3000/onboarding"
-    );
+    );*/
+    res.redirect(
+     `${process.env.FRONTEND_URL}/onboarding`
+   );
   }
 );
 router.post(

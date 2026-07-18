@@ -5,6 +5,8 @@ import { Mailbox } from "../mailbox/mailbox.model.js";
 import {Email} from "./email.model.js";
 import { google } from "googleapis";
 import {getEmails} from "./email.controller.js"
+import { analyzeCandidate } from "./ai.service.js";
+
 
 const router = Router();
 
@@ -49,7 +51,7 @@ router.get(
           }
         );
 
-      const emails = [];
+   /*   const emails = [];
 
 for (const message of
   response.data.messages || []) {
@@ -68,7 +70,7 @@ for (const message of
     headers:
       email.data.payload?.headers,
   });*/
-  const headers =
+ /* const headers =
   email.data.payload?.headers || [];
 
 const subject =
@@ -80,11 +82,14 @@ const from =
   headers.find(
     (h) => h.name === "From"
   )?.value;
+  const aiSummary =
+  `This email was received from ${from}. It appears to be related to "${subject}".`;
 
 emails.push({
   id: email.data.id,
   subject,
   from,
+  aiSummary,
   snippet: email.data.snippet,
 });
 
@@ -109,12 +114,89 @@ await Email.findOneAndUpdate(
 
     receivedAt:
       new Date(),
+
+    aiSummary,
   },
   {
     upsert: true,
   }
 );
+}*/
+const emails = [];
+
+for (
+  const message of
+  response.data.messages || []
+) {
+  const email =
+    await gmail.users.messages.get({
+      userId: "me",
+      id: message.id!,
+    });
+
+  const headers =
+    email.data.payload?.headers ||
+    [];
+
+  const subject =
+    headers.find(
+      (h) => h.name === "Subject"
+    )?.value;
+
+  const from =
+    headers.find(
+      (h) => h.name === "From"
+    )?.value;
+
+  const analysis =
+    analyzeCandidate(
+      subject || "",
+      email.data.snippet || ""
+    );
+
+  emails.push({
+    id: email.data.id,
+
+    subject,
+
+    from,
+
+    snippet:
+      email.data.snippet,
+
+    ...analysis,
+  });
+
+  await Email.findOneAndUpdate(
+    {
+      messageId:
+        email.data.id,
+    },
+    {
+      mailboxId:
+        mailbox._id,
+
+      messageId:
+        email.data.id,
+
+      subject,
+
+      from,
+
+      body:
+        email.data.snippet,
+
+      ...analysis,
+
+      receivedAt:
+        new Date(),
+    },
+    {
+      upsert: true,
+    }
+  );
 }
+
 
 return res.json({
   success: true,

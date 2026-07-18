@@ -16,6 +16,22 @@ export interface EmailDocument
   body: string;
 
   receivedAt: Date;
+
+  aiSummary?: string;
+
+  score?: number;
+
+  skills?: string[];
+
+  missingSkills?: string[];
+
+  github?: string;
+
+  portfolio?: string;
+
+  shortlist?: boolean;
+
+  recommendation?: string;
 }
 
 const emailSchema =
@@ -35,6 +51,46 @@ const emailSchema =
       body: String,
 
       receivedAt: Date,
+
+      aiSummary: {
+        type: String,
+        default: "",
+      },
+
+      score: {
+        type: Number,
+        default: 0,
+      },
+
+      skills: {
+        type: [String],
+        default: [],
+      },
+
+      missingSkills: {
+        type: [String],
+        default: [],
+      },
+
+      github: {
+        type: String,
+        default: "",
+      },
+
+      portfolio: {
+        type: String,
+        default: "",
+      },
+
+      shortlist: {
+        type: Boolean,
+        default: false,
+      },
+
+      recommendation: {
+        type: String,
+        default: "",
+      },
     },
     {
       timestamps: true,

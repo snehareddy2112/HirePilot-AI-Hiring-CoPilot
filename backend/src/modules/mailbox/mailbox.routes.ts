@@ -63,7 +63,8 @@ router.get(
               process.env.GOOGLE_CLIENT_SECRET!,
 
             redirect_uri:
-              "http://localhost:5000/api/mailbox/google/callback",
+              //"http://localhost:5000/api/mailbox/google/callback",
+               `${process.env.NEXT_PUBLIC_API_URL}/api/mailbox/google/callback`,
 
             grant_type:
               "authorization_code",
