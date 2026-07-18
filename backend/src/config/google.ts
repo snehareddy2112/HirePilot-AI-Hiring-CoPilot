@@ -16,3 +16,13 @@ export const mailboxOAuthClient =
     process.env.GOOGLE_CLIENT_SECRET,
     `${process.env.BACKEND_URL}/api/mailbox/google/callback`
   );
+
+console.log(
+  "BACKEND_URL:",
+  process.env.BACKEND_URL
+);
+
+console.log(
+  "AUTH CALLBACK:",
+  `${process.env.BACKEND_URL}/api/auth/google/callback`
+);
