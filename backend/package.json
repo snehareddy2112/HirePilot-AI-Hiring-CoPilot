@@ -35,7 +35,7 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.2.0",
-    "@types/node": "^26.1.0",
+    "@types/node": "^26.1.1",
     "@types/passport": "^1.0.17",
     "@types/passport-google-oauth20": "^2.0.17",
     "eslint": "^10.6.0",
@@ -50,6 +50,10 @@
     "@types/passport-google-oauth20@2.0.17": true,
     "@types/jsonwebtoken@9.0.10": true,
     "jsonwebtoken@9.0.3": true,
-    "googleapis@144.0.0": true
+    "googleapis@144.0.0": true,
+    "@types/node@26.1.1": true,
+    "@types/express@5.0.6": true,
+    "@types/cors@2.8.19": true,
+    "@types/cookie-parser@1.4.10": true
   }
 }
